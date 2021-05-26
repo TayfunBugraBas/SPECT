@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPECT Heart Disase Diagnosis Data Knime Analytics </title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+
+    <nav class="navbar navbar-light" style="background-color: #f3f3f3;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            <img  src="{{url_for('static', filename='img/xhart.jpg')}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            SPECT Verilerinden Kalp Hastalığı Teşhisi
+          </a>
+        </div>
+      </nav>
+
+
+<div class="amac">
+<h4>Projenin Amacı</h4>
+<p>Verilen verilerden yola çıkarak, kalp hastalık teşhisinin konulmasındaki özelliklerin minimum seviyeye indirilmesini sağlamak.<br>Teşhisi doğru tahmin etmek ve teşhisi kolaylaştırmak.<br></p>
+</div>
+
+<div class="verianlatim">
+    <p>Veri Seti Özellikleri</p>
+</div>
+<div class="bgdv">
+<div class="crd">
+  <div class="a">
+<div class="card" style="width: 18rem;">
+  <img src="{{url_for('static', filename='img/normal.PNG')}}" class="card-img-top" alt="...">
+  <div class="card-body">
+      <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" id="but2">
+        Normal Veri Nedir?
+      </button>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" > 
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Normal Veri</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+            Normal veriler UCI veri setinde 0(yanlış) olarak gösterilmiş ve bize burada herşey olması gerektiği gibi demektedir.<br> Hastalık teşhisinde ise bizlere bu kişinin hasta olma ihtimali azdır-yoktur demektedir.<br> Yanda gördüğünüz resim ise adayların birinden alınmış gerçek anormal SPECT görüntüsüdür.
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="crd">
+  <div class="b">
+<div class="card" style="width: 18rem;">
+  <img src="{{url_for('static', filename='img/Anormal.PNG')}}" class="card-img-top" alt="...">
+  <div class="card-body">
+      <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="but1">Anormal Veri Nedir?</button>
+      
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Anormal Veri</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+         Anormal veriler UCI veri setinde 1(doğru) olarak gösterilmiş ve bize burada normal olmayan bir durum var demektedir.<br> Hastalık teşhisinde ise bizlere bu kişinin hasta olma ihtimali fazladır-vardır demektedir.<br> Yanda gördüğünüz resim ise adayların birinden alınmış gerçek anormal SPECT görüntüsüdür.
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="verilernerede">
+
+  <div class="card mb-3">
+    <img src="{{url_for('static', filename='img/verilerNerede.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Veriler Neredelerden Alındı Ve Nasıl Verildi?</h5>
+      <p class="card-text">Bu veriler kalbin sol ventrikülündeki (Kalbin sol tarafındaki boşluk) myocardium (Kas ismi) kalınlıklarından alınmış bulunmaktadır.<br> myocardium 4-5 parçaya bölünüp bu parçalarda ilgi çeken 22 bölgeye bakılmıştır.<br>Bu 22 bölge bize verimizde karar sütünü olarak verilmiş ve 22+1 Sütun olarak sonuç sütunu verilmiştir.  </p>
+      <h5 class="card-title">Kaç Veri Bulunmakta?</h5>
+      <p class="card-text">Veriler 267 Hastadan alınmış olup orjinalinde 80 eğitim 187 test verisi olarak ayrılmıştır.</p>
+      <p class="card-text"><small class="text-muted"></small></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="Knime">
+  <div class="knimebaslik1">
+    <img src="{{url_for('static', filename='img/knimelogo.jpg')}}" alt="knime">
+    <p>Knime Nedir?</p>
+  </div>
+<div class="knimegradient">
+   <div class="x">
+       <p>Knime analitik platformu veri bilimi için açık kaynak bir yazılımdır.<br>Sürekli olarak yeni geliştirmelere açıktır.<br> Knime veri bilimi ile uğraşan insanlara bir çalışma ortamı ve kolaylık sağlamaktadır.<br>Yazılımsal işleri Blueprint şekline dökerek karmaşadan kurtulmanızı sağlamaktadır.<br> Verdiği çeşitli makine öğrenimi metotlarıyla en uygun olanı bulmamızı sağlamaktadır. </p>
+   </div>
+</div>
+<div class="knimekullanilanyontemler">
+<div class="bslk">
+  <p>Kullanılan Yöntemler</p>
+</div>
+<div class="yntm">
+  <div class="card" style="width: 18rem;">
+    <img src="{{url_for('static', filename='img/FeatureSelection.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Feature Selection<br>Bizim için verdiğimiz eğitim modelini kullanarak en iyi verileri ve veri modelini sunmaktadır.<br>bu blueprint sayesinde özellik sayımız 22 özellikten 15 özelliğe düşürülmüştür. </p>
+    </div>
+  </div>
+</div>
+<div class="yntm">
+  <div class="card" style="width: 18rem;">
+    <img src="{{url_for('static', filename='img/DecisionTree.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Decision Tree<br>Sınfılandırma ve Regresyon için kullanılır.<br>Kök, Düğüm ve Yapraklardan oluşur.<br>Her gözlem kökteki koşula göre evet veay hayır olarak sınıflandırılır.<br>Düğüm arttıkça karmaşıklığı artar<br>Sonunda yapraklar bize sonucu verir.<br>Sınıflandırmada 79% doğruluğa ulaşmıştır.</p>
+    </div>
+  </div>
+</div>
+<div class="yntm">
+  <div class="card" style="width: 18rem;">
+    <img src="{{url_for('static', filename='img/PNN.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Probabilistic neural network<br>Sınıflandırma ve örüntü tanıma problemlerinde yaygın olarak kullanılan bir sinir ağıdır.<br>her sınfın üst olasılık dağılım işlevi bir Parzen penceresi ve parametrik olmayan bir işlevle yaklaşık olarak tahmin edilir.<br>sınıflandırmada 77% doğruluğa ulaşmıştır.</p>
+    </div>
+  </div>
+</div>
+<div class="yntm">
+  <div class="card" style="width: 18rem;">
+    <img src="{{url_for('static', filename='img/NaiveBayes.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Naive Bayes<br>Sınıflandırma problemlerinde kullanılan bir gözetimli öğrenme yöntemidir.<br>Naive Bayes sınıflandırıcısı Bayes teoreminin bağımsızlık önermesiyle basitleştirilmiş halidir. Bayes teoremi aşağıdaki denklemle ifade edilir;<br>P(A|B)=P(B|A)P(A)/P(B)<br>P(A|B)= B olayı gerçekleştiğine A'nın olma olasılığıdır.P(B|A)= A olayı gerçekleştiğine B'nin olma olasılığıdır. P(A),P(B) = A ve B olaylarının önsel olasılıklarıdır.<br>sınıflandırmada 91.4% doğruluğa ulaşmıştır.</p>
+    </div>
+  </div>
+</div>
+<div class="yntm">
+  <div class="card" style="width: 18rem;">
+    <img src="{{url_for('static', filename='img/FuzzyRuleLearner.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">Fuzzy Rule Learner<br>modern bilgisayarların dayandığı 1 veya 0 mantığından ziyade doğruluk derecelerine dayalı bir hesaplama yaklaşımıdır.<br>Bulanık mantık belirsiz bir dünyanın gri, sağduyulu resimlerini
+        üretmeleri için bilgisayarlara yardımcı olan makine zekası biçimidir.  <br>sınıflandırmada 76% doğruluğa ulaşmıştır.</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="akissemalari">
+<div class="semabslk">
+  <p>Knime Akış Şemaları</p>
+</div>
+
+
+
+<div class="slider">
+  <div class="slider-items">
+      <div class="item active">
+         <img src="{{url_for('static', filename='img/akışşema1.PNG')}}">
+         <div class="caption">
+            Classification
+         </div>
+      </div>
+      <div class="item">
+         <img src="{{url_for('static', filename='img/şema3.PNG')}}">
+         <div class="caption">
+            Forward Feature Selection 
+         </div>
+      </div>
+      <div class="item">
+         <img src="{{url_for('static', filename='img/şema2.PNG')}}">
+         <div class="caption">
+          Feature Selection 
+         </div>
+      </div>
+
+  </div>
+    <!-- slider controls -->
+      <div class="left-slide">&lt;</div>
+      <div class="right-slide">&gt;</div>
+    <!-- slider controls -->
+</div>
+</div>
+
+<div class="pyt">
+<div class="pytrsm">
+<img src="{{url_for('static', filename='img/python.PNG')}}" alt="">
+<p>Python Nedir?</p>
+</div>
+<div class="pytgradient">
+      <p>Nesne yönelimli, yorumlamalı, birimsel ve etkileşimli yüksek seviyeli bir programlama dilidir.<br>Bizlere sunduğu kütüphaneler ile makine öğrenimi yapabilmekteyiz.<br>Bu projede Python Feature Selection için kullanılmıştır.<br>Knime ile Python Feature Sonuçları Tutarlılık açısından karşılaştırılmıştır.<br></p>
+</div>
+<div class="dogrulukbslk">
+     <p>Elde Edilen Sonuçlar</p>
+</div>
+<div class="kod">
+
+  <div class="card mb-3">
+    <img src="{{url_for('static', filename='img/pyt.PNG')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Veri Karşılaştırma Sonuçları</h5>
+      <p class="card-text">Knime ve Python ile yapılan Feature Selectionlar ile Featureların birbiri ile eşleştiği görülmüştür.<br>Bu sayede Feature Selection işleminin doğruluk oranı arttırılmış, projenin bir amacı olan özelliklerin azaltılması sağlanmıştır.<br>Python kendi yaptığı Feature Selectionda 91.81% doğruluğa ulaşmıştır.</p>
+      <p class="card-text"><small class="text-muted"></small></p>
+    </div>
+  </div>
+</div>
+</div>
+
+<br>
+<br>
+<div class="interactive" style="text-align: center; font-size: 56px;">
+      <p>Kullanıcı Veri Erişim Tuşları</p>
+</div>
+<div class="interactive2" style="text-align: center; font-size: 24px;">
+  <p>Bu tuşları kulanarak veriler içerisinde gezebilir <br> database aktarılan sonuçları görebilirsiniz </p>
+</div>
+<div class="buttons" style="display: inline-block; margin-inline: 13.5%;">
+  <a class="btn btn-primary" href="/database" role="button">ClassificationDatas</a>
+</div>
+<div class="buttons" style="display: inline-block; margin-inline: 13%;"> 
+<a class="btn btn-primary" href="/VeriDatabase" role="button">FullData</a>
+</div> 
+<div class="buttons" style="display: inline-block; margin-inline: 13.5%;">
+  <a class="btn btn-primary" href="/Features" role="button">Features</a>
+</div>
+<br>
+<br>
+<div class="fttr" style="background-color: #F3F3F3;">
+  <h4>Linkler</h4>
+<a href="https://archive.ics.uci.edu/ml/datasets/SPECT+Heart">UCI Machine Learning Repository </a><br>
+<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.17.3773&rep=rep1&type=pdf">Knowledge discovery approach to automated cardiac SPECT diagnosis</a><br>
+<a href="https://github.com/TayfunBugraBas/SPECT">Github</a><br>
+<a href="https://www.knime.com/">Knime</a><br>
+<a href="https://www.python.org/">Python</a><br>
+<a href="https://flask.palletsprojects.com/en/2.0.x/">Python-Flask</a><br>
+</div>
+<div class="fttr2" style="text-align: center; background-color: #c0bfbf; height:40px;">
+<h6>Designed By Tayfun Buğra Baş For Spect Machine Learning</h6>
+</div>
+
+
+<script src="{{url_for('static', filename='slider1.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+
+
+
+</html>
